@@ -14,34 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-:host {
-  display: inline-block;
-}
+import { escape, kebabCase  } from "lodash";
 
-.avatar {
-  display: inline-block;
-  aspect-ratio: 1 / 1;
-  text-align: center;
-  font-size: min(.65em, 60px);
-  border-radius: 50%;
-
-  background-color: var(--color);
-  color: #fff; // this value should not changed based on the theme
-
-  speak: none;
-  pointer-events: none;
-  font-weight: normal;
-
-  overflow: hidden;
-}
-
-.avatar[data-type=square] {
-  border-radius: 25%;
-}
-
-.avatar img {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 100%;
+export function html(componentName: string, args: Record<string, any>): string {
+  let html = `<${componentName} `;
+  for (const [name, value] of Object.entries(args)) {
+    html += `${kebabCase(name)}="${escape(value)}" `;
+  }
+  html += ` />`;
+  return html;
 }

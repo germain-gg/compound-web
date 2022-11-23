@@ -14,6 +14,44 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export function format(first: string, middle: string, last: string): string {
-  return (first || '') + (middle ? ` ${middle}` : '') + (last ? ` ${last}` : '');
+import { split } from "lodash";
+
+/**
+ *
+ * @param name
+ */
+export function nameToColor(name: string): string {
+  // TODO: Those values should be taken from the design tokens
+  const defaultColors = ['#0DBD8B', '#368bd6', '#ac3ba8'];
+  let total = 0;
+  for (let i = 0; i < name.length; ++i) {
+      total += name.charCodeAt(i);
+  }
+  const colorIndex = total % defaultColors.length;
+  return defaultColors[colorIndex];
+}
+
+/**
+ * returns the first (non-sigil) character of 'name',
+ * converted to uppercase
+ * @param {string} name
+ * @return {string} the first letter
+ */
+export function getInitialLetter(name: string): string {
+  if (!name) {
+      // XXX: We should find out what causes the name to sometimes be falsy.
+      console.trace("`name` argument to `getInitialLetter` not supplied");
+      return undefined;
+  }
+  if (name.length < 1) {
+      return undefined;
+  }
+
+  const initial = name[0];
+  if ((initial === '@' || initial === '#' || initial === '+') && name[1]) {
+      name = name.substring(1);
+  }
+
+  // rely on the grapheme cluster splitter in lodash so that we don't break apart compound emojis
+  return split(name, "", 1)[0].toUpperCase();
 }

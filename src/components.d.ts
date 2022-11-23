@@ -8,17 +8,25 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface CpdAvatar {
         /**
-          * The avatar's height in pixels
+          * ID for generating hash colours
          */
-        "height": number;
+        "idName"?: string;
+        /**
+          * The name (first initial used as default)
+         */
+        "name": string;
+        /**
+          * The avatar's rendering type
+         */
+        "renderingType"?: "round" | "square";
+        /**
+          * The avatar's size
+         */
+        "size": string;
         /**
           * The avatar's source
          */
-        "src": string;
-        /**
-          * The avatar's width in pixels
-         */
-        "width": number;
+        "src"?: string;
     }
 }
 declare global {
@@ -35,17 +43,25 @@ declare global {
 declare namespace LocalJSX {
     interface CpdAvatar {
         /**
-          * The avatar's height in pixels
+          * ID for generating hash colours
          */
-        "height"?: number;
+        "idName"?: string;
+        /**
+          * The name (first initial used as default)
+         */
+        "name"?: string;
+        /**
+          * The avatar's rendering type
+         */
+        "renderingType"?: "round" | "square";
+        /**
+          * The avatar's size
+         */
+        "size"?: string;
         /**
           * The avatar's source
          */
         "src"?: string;
-        /**
-          * The avatar's width in pixels
-         */
-        "width"?: number;
     }
     interface IntrinsicElements {
         "cpd-avatar": CpdAvatar;

@@ -16,28 +16,59 @@ limitations under the License.
 
 import { Component, Prop, h } from '@stencil/core';
 
+import { getInitialLetter, nameToColor } from "../../utils/utils";
+
 @Component({
   tag: 'cpd-avatar',
   styleUrl: 'avatar.css',
   shadow: true,
 })
 export class Avatar {
+
+  /**
+   * The name (first initial used as default)
+   */
+  @Prop() name: string = "";
+
+  /**
+   * ID for generating hash colours
+   */
+  @Prop() idName?: string = "";
+
   /**
    * The avatar's source
    */
-  @Prop() src: string;
+   @Prop() src?: string;
+
+   /**
+   * The avatar's size
+   */
+  @Prop() size: string;
 
   /**
-   * The avatar's width in pixels
+   * The avatar's rendering type
    */
-  @Prop() width: number;
-
-  /**
-   * The avatar's height in pixels
-   */
-  @Prop() height: number;
+  @Prop() renderingType?: "round" | "square" = "round";
 
   render() {
-    return <img src={this.src} width={this.width} height={this.height} />;
+      return (
+        <div
+          class="avatar"
+          style={{
+            "--color": nameToColor(this.idName),
+            width: this.size,
+            lineHeight: this.size,
+            fontSize: `min(calc(${this.size} * 0.65), 60px)`
+          }}
+          data-type={this.renderingType}
+          title={this.name}
+        >
+          { this.src !== undefined
+            ? <img src={this.src} alt="" />
+            : <span>{ getInitialLetter(this.name) }</span>
+          }
+
+        </div>
+      );
   }
 }

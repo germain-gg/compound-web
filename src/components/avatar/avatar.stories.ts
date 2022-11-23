@@ -14,20 +14,44 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import { html } from "../../utils/html";
+
 export default {
   title: 'Avatar',
 };
 
-const Template = (args) => `<cpd-avatar
-  src="${args.src}"
-  width="${args.width}"
-  height="${args.height}" />`;
+const Template = (args) => html('cpd-avatar', args);
 
-export const Example = Template.bind({});
-Example.args = {
+export const Round = Template.bind({});
+Round.args = {
   src: 'http://placekitten.com/200/300',
-  width: 50,
-  height: 50,
+  size: "50px",
+  renderingType: "round",
+  idName: "@bob:example.org",
+  name: "👷‍♀️ Bob",
+};
+
+export const Square = Template.bind({});
+Square.args = {
+  src: 'http://placekitten.com/200/300',
+  idName: "@bob:example.org",
+  name: "👷‍♀️ Bob",
+  renderingType: "square",
+  size: "50px",
+};
+
+export const NoImage = Template.bind({});
+NoImage.args = {
+  size: "50px",
+  idName: "@bob:example.org",
+  name: "👷‍♀️ Bob"
+};
+
+export const VeryLargeNoImage = Template.bind({});
+VeryLargeNoImage.args = {
+  size: "300px",
+  idName: "@bob:example.org",
+  name: "👷‍♀️ Bob"
 };
 
 

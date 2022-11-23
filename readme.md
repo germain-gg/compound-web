@@ -11,6 +11,7 @@
 To start developping, run:
 
 ```bash
+cd compound-web/
 yarn
 yarn start
 ```
@@ -18,12 +19,14 @@ yarn start
 To build components for production, run:
 
 ```bash
+cd compound-web/
 yarn build
 ```
 
 To run the unit tests for the components, run:
 
 ```bash
+cd compound-web/
 yarn test
 ```
 

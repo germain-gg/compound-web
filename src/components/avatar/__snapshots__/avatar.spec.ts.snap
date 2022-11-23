@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cpd-avatar renders 1`] = `
+<cpd-avatar src="http://placekitten.com/200/300">
+  <mock:shadow-root>
+    <img src="http://placekitten.com/200/300">
+  </mock:shadow-root>
+</cpd-avatar>
+`;

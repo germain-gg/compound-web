@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build
-        run: yarn && yarn build && yarn run build-storybook
+        run: cd compound-web/ && yarn && yarn build && yarn run build-storybook
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

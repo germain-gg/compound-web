@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { escape, kebabCase  } from "lodash";
+import { escape, kebabCase  } from "lodash-es";
 
-export function html(componentName: string, args: Record<string, any>): string {
+export function html(componentName: string, args: Record<string, unknown>): string {
   let html = `<${componentName} `;
   for (const [name, value] of Object.entries(args)) {
     html += `${kebabCase(name)}="${escape(value)}" `;

@@ -28,7 +28,7 @@ export class Avatar {
   /**
    * The name (first initial used as default)
    */
-  @Prop() name: string = "";
+  @Prop() name = "";
 
   /**
    * ID for generating hash colours

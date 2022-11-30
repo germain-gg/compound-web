@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { split } from "lodash";
+import { split } from "lodash-es";
 
 /**
  *
@@ -38,7 +38,7 @@ export function nameToColor(name: string): string {
  * @return {string} the first letter
  */
 export function getInitialLetter(name: string): string {
-  if (!name) {
+  if (typeof name !== "string" || name === "") {
       // XXX: We should find out what causes the name to sometimes be falsy.
       console.trace("`name` argument to `getInitialLetter` not supplied");
       return undefined;
@@ -48,7 +48,7 @@ export function getInitialLetter(name: string): string {
   }
 
   const initial = name[0];
-  if ((initial === '@' || initial === '#' || initial === '+') && name[1]) {
+  if ((initial === '@' || initial === '#' || initial === '+') && typeof name === "string" && name !== "") {
       name = name.substring(1);
   }
 
